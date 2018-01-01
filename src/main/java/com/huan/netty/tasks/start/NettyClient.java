@@ -48,7 +48,7 @@ public class NettyClient {
 						ch.pipeline().addLast(new PackClientHandler());
 					}
 				});
-		ChannelFuture future = bootstrap.connect("172.20.10.10", 9091).sync();
+		ChannelFuture future = bootstrap.connect("192.168.1.115", 9091).sync();
 		log.info("client connect server.");
 
 		ScheduledExecutorService newSingleThreadScheduledExecutor = Executors.newSingleThreadScheduledExecutor();

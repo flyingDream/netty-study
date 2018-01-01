@@ -1,5 +1,7 @@
 package com.huan.netty.tasks.start;
 
+import java.util.concurrent.TimeUnit;
+
 import com.huan.netty.tasks.decoder.PackDecoder;
 import com.huan.netty.tasks.encoder.PackEncoder;
 import com.huan.netty.tasks.handler.PackServerHandler;
@@ -16,6 +18,7 @@ import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
 import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
+import io.netty.handler.timeout.IdleStateHandler;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
@@ -35,6 +38,7 @@ public class NettyServer {
 						ch.pipeline().addLast(new PackDecoder());
 						ch.pipeline().addLast(new LengthFieldPrepender(4));
 						ch.pipeline().addLast(new PackEncoder());
+						ch.pipeline().addLast(new IdleStateHandler(3, 3, 3, TimeUnit.SECONDS));
 						ch.pipeline().addLast(new PackServerHandler());
 					}
 				});

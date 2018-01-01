@@ -40,4 +40,5 @@ public class PackClientHandler extends SimpleChannelInboundHandler<Pack> {
 	protected void channelRead0(ChannelHandlerContext ctx, Pack msg) throws Exception {
 		log.info("客户端收到服务器端发送的消息[{}]", msg);
 	}
+
 }
